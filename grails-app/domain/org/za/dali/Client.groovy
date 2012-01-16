@@ -1,10 +1,15 @@
 package org.za.dali
 
+import java.util.Date
+
 import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
 import org.za.dali.enums.ClientStatus
 
 class Client {
 
+	static auditable = true
+	transient String auditLogReason
+	
 	static belongsTo = [costCentre:CostCentre,parent:Client]
 	
 	String name
@@ -14,14 +19,18 @@ class Client {
 	String regNumber
 	String vatNumber
 	Boolean taxable = true
-
+	Date dateCreated
+	
 	Collection clients
 	Collection contactDetails
 	Collection contacts
+	Collection rateCards
+	Collection projects
 
-	static hasMany = [clients:Client,contactDetails:ContactDetail,contacts:Contact]
+	static hasMany = [clients:Client,contactDetails:ContactDetail,contacts:Contact, rateCards:RateCard, projects:Project]
 
 	static constraints = {
+		costCentre(nullable:false)
 		parent(nullable:true)
 		name(blank: false, nullable: false)
 		clientCode(blank: false, nullable: false)

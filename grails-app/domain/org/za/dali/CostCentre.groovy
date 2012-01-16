@@ -63,6 +63,6 @@ class CostCentre {
 
 class GeoLocation {
 	Long latitude
-	Long longitued
+	Long longitude
 	Integer zoomLevel
 }

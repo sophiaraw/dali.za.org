@@ -12,8 +12,7 @@ class Project {
 	static auditable = true
 	transient String auditLogReason
 	
-	static belongsTo = [client:Client]
-	Project parent
+	static belongsTo = [client:Client, parent:Project]
 	User trafficManager
 	ProjectType type = ProjectType.QUOTE
 	ProjectStatus status = ProjectStatus.DRAFT
@@ -36,7 +35,8 @@ class Project {
 	
 	Collection contacts
 	Collection budgetAdjustments
-    static hasMany = [contacts:Contact,budgetAdjustments:BudgetAdjustment]
+	Collection rateCards
+    static hasMany = [contacts:Contact, budgetAdjustments:BudgetAdjustment, rateCards:RateCard]
 
 	static constraints = {
 //     	status(nullable: false)

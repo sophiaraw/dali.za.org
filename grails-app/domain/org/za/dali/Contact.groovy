@@ -6,7 +6,7 @@ import org.za.dali.enums.ContactRole
 
 class Contact {
 
-	static belongsTo = [client:Client]
+	static belongsTo = [client:Client, project:Project]
 	User user
 	
 	String firstName
