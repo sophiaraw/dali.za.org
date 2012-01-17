@@ -1,7 +1,8 @@
 import org.za.dali.CostCentre
+import org.za.dali.User
 import org.za.dali.enums.AccountingSoftware
 import org.za.dali.enums.Currency
-
+import org.za.dali.enums.UserStatus
 
 
 class BootStrap {
@@ -24,6 +25,8 @@ class BootStrap {
 		cc.setPrefix("CTN")
 		
 		cc.save(flush:true)
+		
+		createUsers()
 //		
 //		println cc
 //		
@@ -33,6 +36,15 @@ class BootStrap {
 //		
 //		println contact.validate()
     }
+	
+	private void createUsers() {
+		User user = new User(username:'aa@aa.com',
+							 password:'aa',
+							 status:UserStatus.ACTIVE)
+		
+		user.save(flush:true)
+	 }
+	
     def destroy = {
     }
 }

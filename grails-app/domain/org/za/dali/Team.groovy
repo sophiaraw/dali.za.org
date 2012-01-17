@@ -19,7 +19,7 @@ class Team {
 		costCentre(nullable:false)
 		parent(nullable:true)
 		title(nullable:false)
-		user(nullable:false)
+		leader(nullable:false)
 	}
 
 	static mapping = {

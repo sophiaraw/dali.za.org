@@ -1,6 +1,10 @@
+import java.util.Date;
+
 @artifact.package@class @artifact.name@ {
 
 	static belongsTo = []
+	
+	Date dateCreated
 	
     static hasMany = []
 	

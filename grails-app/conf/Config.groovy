@@ -1,3 +1,6 @@
+import org.springframework.web.context.request.RequestContextHolder
+import org.za.dali.Login
+
 // locations to search for config files that get merged into the main config
 // config files can either be Java properties files or ConfigSlurper scripts
 
@@ -96,8 +99,39 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
-//auditLog {
-//	actorClosure = { request, session ->
-//		session.user?.username
-//	}
-//}
+auditLog {
+	actorClosure = { request, session ->
+		session.user?.username
+	}
+}
+
+// Added by the Spring Security Core plugin:
+grails.plugins.springsecurity.userLookup.userDomainClassName = 'org.za.dali.User'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'org.za.dali.UserRole'
+grails.plugins.springsecurity.userLookup.authoritiesPropertyName = 'roles'
+grails.plugins.springsecurity.authority.className = 'org.za.dali.enums.Role'
+grails.plugins.springsecurity.authority.nameField = 'role'
+grails.plugins.springsecurity.rememberMe.cookieName = 'grails_remember_me'
+
+grails.plugins.springsecurity.controllerAnnotations.staticRules = [
+	'/logout/**':               ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+	'/login/**':                ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+	'/js/**':				 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+	'/css/**':				 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+	'/images/**':			 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+	'/favico.ico':			 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+	'/**':         ['IS_AUTHENTICATED_REMEMBERED']
+ ]
+
+grails.plugins.springsecurity.useSecurityEventListener = true
+grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
+	
+	org.za.dali.Login.withTransaction { status ->
+		def user = org.za.dali.User.read(appCtx.springSecurityService.currentUser.id)
+		def request = RequestContextHolder.getRequestAttributes().getRequest()
+		org.za.dali.Login login = new org.za.dali.Login(ip:request.remoteAddr, user:user)
+		login.save(flush: true)
+	}
+}
+
+

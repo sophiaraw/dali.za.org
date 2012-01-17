@@ -10,7 +10,15 @@ class User {
 	static auditable = true
 	transient String auditLogReason
 
+	transient springSecurityService
+	transient Boolean accountExpired = false
+	transient Boolean accountLocked = false
+	transient Boolean passwordExpired = false
+	
 	static belongsTo = [team:Team]
+	
+	String username
+	String password
 	
 	String title
 	String firstName
@@ -37,13 +45,33 @@ class User {
 	Collection rateCards
 	Collection teams
 	Collection roles
+	Collection logins
 	
 	static hasOne = [account:Account]
 	
-	static hasMany = [contactDetails:ContactDetail, contacts:UserContact, rateCards:RateCard, teams:UserTeam, roles:UserRole]
+	static hasMany = [contactDetails:ContactDetail, contacts:UserContact, rateCards:RateCard, teams:UserTeam, roles:UserRole, logins:Login]
+	
+	Boolean isEnabled() {
+		return status.is(UserStatus.ACTIVE)
+	}
+	
+	def beforeInsert() {
+		encodePassword()
+	}
+
+	def beforeUpdate() {
+		if (isDirty('password')) {
+			encodePassword()
+		}
+	}
+
+	protected void encodePassword() {
+		password = springSecurityService.encodePassword(password)
+	}
 	
 	static constraints = {
-//		emailAddress(email: true, blank: false)
+		username(email: true, blank: false, unique: true)
+		password(blank: false)
 	}
 
 	def beforeValidate() {
@@ -51,6 +79,7 @@ class User {
 	}
 	
 	static mapping = {
+		password column: '`password`'
 		sort(lastName: "asc")
 //		childCollection(sort: 'number', order: 'desc')
 		martitalStatus(type: IdentityEnumType,sqlType: "varchar(3)")
