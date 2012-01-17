@@ -110,6 +110,7 @@
 			</p>
 
 			<p>
+			    <input type="hidden" name="spring-security-redirect" value="/" />
 				<input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
 			</p>
 		</form>

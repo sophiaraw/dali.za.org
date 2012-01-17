@@ -1,10 +1,13 @@
 import java.util.Date;
+import org.za.dali.User;
+
 
 @artifact.package@class @artifact.name@ {
 
 	static belongsTo = []
 	
-	Date dateCreated
+	User createdBy
+    Date dateCreated
 	
     static hasMany = []
 	

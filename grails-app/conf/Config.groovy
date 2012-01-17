@@ -126,12 +126,16 @@ grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 grails.plugins.springsecurity.useSecurityEventListener = true
 grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
 	
+	def userId = null
 	org.za.dali.Login.withTransaction { status ->
 		def user = org.za.dali.User.read(appCtx.springSecurityService.currentUser.id)
+		userId = user.id
 		def request = RequestContextHolder.getRequestAttributes().getRequest()
 		org.za.dali.Login login = new org.za.dali.Login(ip:request.remoteAddr, user:user)
 		login.save(flush: true)
 	}
+	
+	if(!userId) { RequestContextHolder.currentRequestAttributes().getSession().userId = userId } 
 }
 
 

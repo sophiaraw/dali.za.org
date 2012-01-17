@@ -1,33 +1,39 @@
 package org.za.dali
 
-import java.util.Date
-
 import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
 import org.za.dali.enums.OpportunityLevel
 import org.za.dali.enums.ProjectStatus
 import org.za.dali.enums.ProjectType
 
+
 class Project {
+	
+	def userService
+	static transients = ['userService']
 	
 	static auditable = true
 	transient String auditLogReason
 	
 	static belongsTo = [client:Client, parent:Project]
-	User trafficManager
+	
 	ProjectType type = ProjectType.QUOTE
 	ProjectStatus status = ProjectStatus.DRAFT
-	String number
+	
+	String jobNumber
 	String PONumber
 	String title
 	String description
 	String emailAlias
 	Opportunity opportunity
-	Boolean retainer
+	Boolean retainer = false
 	Date retainerStartDate
 	Date retainerEndDate
 	
 	Date requestedDeliveryDate
 	Date actualDeliveryDate
+	
+	User trafficManager
+	User projectOwner
 	
 	User createdBy
     Date dateCreated
@@ -38,11 +44,31 @@ class Project {
 	Collection rateCards
     static hasMany = [contacts:Contact, budgetAdjustments:BudgetAdjustment, rateCards:RateCard]
 
+	String getTitle() {
+		return (!title) ? "${status.name}: ${type.name}" : title 
+	}
+	
+	def beforeInsert() {
+//		generateJobNumber()
+		if(!createdBy())
+		{
+			createdBy = userService.getLoggedInUser()
+		}
+		
+		jobNumber = 'jobNumber'
+	}
+	
 	static constraints = {
-//     	status(nullable: false)
+		type(inList:ProjectType.values()*.id)
+		status(inList:ProjectStatus.values()*.id)
+		trafficManager(nullable:false)
+		projectOwner(nullable:false)
 	}
 
 	static mapping = {
+		client(fetch: 'join')
+		parent(fetch: 'join')
+		
 		sort(dateCreated: "desc")
 		type(type: IdentityEnumType,sqlType: "varchar(3)")
 		status(type: IdentityEnumType,sqlType: "varchar(3)")
