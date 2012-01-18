@@ -16,6 +16,7 @@ class Client {
 	ClientStatus status
 	String clientCode
 	String accountingCode
+	String prefix
 	String regNumber
 	String vatNumber
 	Boolean taxable = true
@@ -34,6 +35,7 @@ class Client {
 		parent(nullable:true)
 		name(blank: false, nullable: false)
 		clientCode(blank: false, nullable: false)
+		prefix(nullable:false,unique:true,size:1..8)
 	}
 
 	static mapping = {
@@ -42,6 +44,7 @@ class Client {
 		contacts(sort: 'role')
 		//		contacts(sort: 'role, lastName', order: 'desc')
 		status(type: IdentityEnumType,sqlType: "varchar(3)")
+		prefix(sqlType:"varchar(8)",unique:true)
 	}
 	
 //	def onChange = { oldMap,newMap ->

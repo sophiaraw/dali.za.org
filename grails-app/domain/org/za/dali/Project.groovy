@@ -50,17 +50,18 @@ class Project {
 	
 	def beforeInsert() {
 //		generateJobNumber()
-		if(!createdBy())
+		if(!createdBy)
 		{
-			createdBy = userService.getLoggedInUser()
+			println 'TODO'
+//			createdBy = userService.getLoggedInUser()
 		}
 		
 		jobNumber = 'jobNumber'
 	}
 	
 	static constraints = {
-		type(inList:ProjectType.values()*.id)
-		status(inList:ProjectStatus.values()*.id)
+//		type(inList:ProjectType.values()*.name)
+//		status(inList:ProjectStatus.values()*.name)
 		trafficManager(nullable:false)
 		projectOwner(nullable:false)
 	}
@@ -68,6 +69,9 @@ class Project {
 	static mapping = {
 		client(fetch: 'join')
 		parent(fetch: 'join')
+		trafficManager(fetch: 'join')
+		projectOwner(fetch: 'join')
+		createdBy(fetch: 'join')
 		
 		sort(dateCreated: "desc")
 		type(type: IdentityEnumType,sqlType: "varchar(3)")
