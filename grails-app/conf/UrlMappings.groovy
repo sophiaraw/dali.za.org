@@ -1,6 +1,5 @@
 import javassist.NotFoundException
-
-import org.springframework.security.access.AccessDeniedException
+import za.co.quirklabs.authorise.AuthorisationDeniedException
 
 class UrlMappings {
 
@@ -18,7 +17,7 @@ class UrlMappings {
 	   "403"(controller: "errors", action: "error403")
 	   "404"(controller: "errors", action: "error404")
 	   "500"(controller: "errors", action: "error500")
-	   "500"(controller: "errors", action: "error403", exception: AccessDeniedException)
 	   "500"(controller: "errors", action: "error403", exception: NotFoundException)
+	   "500"(controller: "errors", action: "accessDenied", exception: AuthorisationDeniedException)
 	}
 }

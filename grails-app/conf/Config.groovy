@@ -138,4 +138,5 @@ grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, app
 	if(!userId) { RequestContextHolder.currentRequestAttributes().getSession().userId = userId } 
 }
 
-
+// Added by the Authorise plugin:
+grails.plugins.authorise.authoriseService = org.za.dali.AuthoriseServiceService

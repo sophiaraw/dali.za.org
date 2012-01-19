@@ -5,6 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 class CostCentreController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	static defaultAction = "list"
 
     def index() {
         redirect(action: "list", params: params)
