@@ -52,7 +52,7 @@ class Project {
 //		generateJobNumber()
 		if(!createdBy)
 		{
-			println 'TODO'
+			println 'TODO "domain/Project add loggedin user as createBy'
 //			createdBy = userService.getLoggedInUser()
 		}
 		
@@ -60,8 +60,8 @@ class Project {
 	}
 	
 	static constraints = {
-//		type(inList:ProjectType.values()*.name)
-//		status(inList:ProjectStatus.values()*.name)
+		type(nullable:false,inList:ProjectType.values().toList())
+		status(nullable:false,inList:ProjectStatus.values().toList())
 		trafficManager(nullable:false)
 		projectOwner(nullable:false)
 	}

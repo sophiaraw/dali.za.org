@@ -15,7 +15,7 @@ environments {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
 			url = "jdbc:mysql://localhost/dali"
-			loggingSql = true
+//			loggingSql = true
         }
     }
     test {

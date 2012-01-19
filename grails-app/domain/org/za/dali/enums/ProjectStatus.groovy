@@ -10,7 +10,8 @@ enum ProjectStatus {
 	CANCELLED('CAN','Cancelled'),
 	SCHEDULE('SCH','Schedule'),
 	OPEN('OPE','Open'),
-	CLOSED('CLO','Closed')
+	CLOSED('CLO','Closed'),
+	DELETED('DLT','Deleted')
 	
 	String id
 	String name
