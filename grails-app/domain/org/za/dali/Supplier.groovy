@@ -1,25 +1,25 @@
 package org.za.dali
 
+import java.util.Date;
+import org.za.dali.User;
+
+
 class Supplier {
 
-	static belongsTo = []
+	Company company
 	
-    static hasMany = []
+	String title
+	String description
+	String code
+	
+	User createdBy
+    Date dateCreated
+
+	Collection contactDetails	
+    static hasMany = [contactDetails:ContactDetail]
 	
 	static constraints = {
-//		emailAddress(email: true, blank: false)
+		title(nullable:false, blank:false)
+		code(nullable:false, blank:false)
 	}
-
-	def beforeValidate() {
-//		name = name?.trim()
-	}
-	
-	static mapping = {
-//		sort(name: "asc")
-//		childCollection(sort: 'number', order: 'desc')
-//		enumName(type: IdentityEnumType,sqlType: "varchar(3)")
-
-	}
-	
-	static embedded = ['somePOGO']
 }
