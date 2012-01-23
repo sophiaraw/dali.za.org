@@ -5,3 +5,17 @@ User getTrafficManager() {
 		
 		return trafficManager
 	}
+	
+TO SOLVE:
+--> budget transfers, tasks should have a task bill that is connected to the origin project invoice	
+	
+IMPORT:
+--> serviceLines + ACCPAC service codes
+
+
+REQUEST:
+--> (Rachel) Accpac vat category dropdown list
+
+
+CRON:
+--> Send ALERTs when retainer is about to close

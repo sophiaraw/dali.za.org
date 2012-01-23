@@ -9,16 +9,18 @@ class CostCentre {
 	static auditable = true
 	transient String auditLogReason
 	
-	static belongsTo = [parent:CostCentre]
+	CostCentre parent
 	
-	String name
+	String title
 	String registeredName
 	String prefix
 	Currency currency
 	AccountingSoftware accSoftware
 	GeoLocation geoLocation
-	Long vatPercentage
+    BigDecimal vatPercentage;
 	Integer invoiceDay
+	Integer billingDay
+	String logo
     Date dateCreated
 	
 	Collection<Client> clients
@@ -27,24 +29,25 @@ class CostCentre {
 	static hasMany = [clients:Client, contactDetails:ContactDetail]
 
 	static constraints = {
-		parent(nullable:true)
-		name(blank: false, nullable: false)
+		title(blank: false, nullable: false)
 		registeredName(blank: false, nullable: false)
 		prefix(blank: false, nullable: false)
+		currency(nullable:false,inList:Currency.values().toList())
 		vatPercentage(blank: false, nullable: false)
 		invoiceDay(nullable:true,min:1,max:31)
+		billingDay(nullable:true,min:1,max:31)
 	}
 
 	static mapping = {
-		sort name: "asc"
-		currency(type: IdentityEnumType,sqlType: "varchar(3)")
-		accSoftware(type: IdentityEnumType,sqlType: "varchar(6)")
+		sort title: "asc"
+		currency(type: IdentityEnumType,sqlType: "varchar(10)")
+		accSoftware(type: IdentityEnumType,sqlType: "varchar(10)")
 	}
 
 	static embedded = ['geoLocation']
 
 	String toString() {
-		"$prefix: $name"
+		"$prefix: $title"
 	}
 	
 //	def onChange = { oldMap,newMap ->

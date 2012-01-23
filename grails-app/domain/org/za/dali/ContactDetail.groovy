@@ -5,7 +5,7 @@ import org.za.dali.enums.ContactDetailType
 
 class ContactDetail {
 
-	static belongsTo = [costCentre:CostCentre,client:Client]
+	static belongsTo = [costCentre:CostCentre,client:Client,user:User]
 	
 	ContactDetailType type
 	String name
@@ -13,17 +13,18 @@ class ContactDetail {
 
 	static constraints = {
 		value(blank:false, nullable:false)
-		costCentre(nullable:true)
-		client(nullable:true)
+		type(nullable:false, inList:ContactDetailType.values().toList())
+		name(nullable:false, blank:false)
+		value(nullable:false, blank:false)
 	}
 
 	static mapping = {
 		sort name: "asc"
-		type(type: IdentityEnumType,sqlType: "varchar(8)")
+		type(type: IdentityEnumType,sqlType: "varchar(108)")
 		value(type:'text')
 	}
 	
 	String toString(){
-		"$name"
+		name
 	}
 }

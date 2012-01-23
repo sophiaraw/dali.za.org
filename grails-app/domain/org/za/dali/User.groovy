@@ -1,5 +1,7 @@
 package org.za.dali
 
+import java.util.Date
+
 import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
 import org.za.dali.enums.MaritalStatus
 import org.za.dali.enums.UserStatus
@@ -25,6 +27,7 @@ class User {
 	String lastName
 	String otherNames
 	String preferredName
+	String emailAddress
 	MaritalStatus martitalStatus
 	String userNumber
 	String residency
@@ -35,13 +38,15 @@ class User {
 	Date dob
 	UserStatus status
 	UserType type
-	//TODO avatar
+	String avatar
 	Integer hoursPerDay
 	Date contractStartDate
 	Date contractEndDate
-
+	Date dateCreated
+	
 	
 	Collection contactDetails
+	Collection userProperties
 	Collection contacts
 	Collection rateCards
 	Collection teams
@@ -50,7 +55,7 @@ class User {
 	
 	static hasOne = [account:Account]
 	
-	static hasMany = [contactDetails:ContactDetail, contacts:UserContact, rateCards:RateCard, teams:UserTeam, roles:UserRole, logins:Login]
+	static hasMany = [contactDetails:ContactDetail, userProperties:UserProperty, contacts:UserContact, rateCards:RateCard, teams:UserTeam, roles:UserRole, logins:Login]
 	
 	def getAuthorities() {
 		return roles
@@ -74,25 +79,32 @@ class User {
 		password = springSecurityService.encodePassword(password)
 	}
 	
-	static constraints = {
-		costCentre(nullable: false,blank: false)
-		username(email: true, blank: false, unique: true)
-		password(blank: false)
-		// must have at least one team
-	}
 
 	def beforeValidate() {
 //		name = name?.trim()
 	}
 	
+	static constraints = {
+		costCentre(nullable:false, blank:false)
+		username(nullable:false, blank:false, unique:true)
+		password(nullable:false, blank:false)
+		type(nullable:false, inList:UserType.values().toList())
+		status(nullable:false, inList:UserStatus.values().toList())
+		firstName(nullable:false, blank:false)
+		lastName(nullable:false, blank:false)
+		emailAddress(nullable:false, blank:false, email:true)
+		userNumber(nullable:false, blank:false)
+		// must have at least one team
+		//must have at least one next of kin
+	}
+	
 	static mapping = {
-		password column: '`password`'
+//		password column: '`password`'
 		sort(lastName: "asc")
-//		childCollection(sort: 'number', order: 'desc')
-		martitalStatus(type: IdentityEnumType,sqlType: "varchar(3)")
-		status(type: IdentityEnumType,sqlType: "varchar(3)")
-		type(type: IdentityEnumType,sqlType: "varchar(3)")
-		roles(lazy: false)
+		martitalStatus(type: IdentityEnumType,sqlType: "varchar(10)")
+		status(type: IdentityEnumType,sqlType: "varchar(10)")
+		type(type: IdentityEnumType,sqlType: "varchar(10)")
+		roles(fetch: 'join')
 	}
 }
 

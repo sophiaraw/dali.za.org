@@ -11,12 +11,7 @@ class Account {
 	String accountNumber
 		
 	static constraints = {
-//		emailAddress(email: true, blank: false)
+		institute(nullable:false, blank:false)
+		accountNumber(nullable:false, blank:false)
 	}
-
-	def beforeValidate() {
-//		name = name?.trim()
-	}
-	
-	static embedded = ['somePOGO']
 }

@@ -11,25 +11,24 @@ class Rate {
 	transient String auditLogReason
 	
 	static belongsTo = [rateCard:RateCard, project:Project, client:Client, user:User, team:Team]
-	
-	RateType type = RateType.HOURLY
+
 	ServiceLine serviceLine
 	TeamLevel level
-	Long value
+	RateType type = RateType.HOURLY
+	BigDecimal value
 	Boolean active = false
 	
-	Date activeDate
-	Date expiryDate
 	Date dateCreated
 	
 	static constraints = {
-		type(nullable:false)
 		rateCard(nullable:false)
 		serviceLine(nullable:false)
 		level(nullable:false)
+		type(nullable:false,inList:RateType.values().toList())
+		value(nullable:false, blank:false)
 	}
 
 	static mapping = {
-		type(type: IdentityEnumType,sqlType: "varchar(3)")
+		type(type: IdentityEnumType,sqlType: "varchar(10)")
 	}
 }

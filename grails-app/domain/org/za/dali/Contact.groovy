@@ -1,7 +1,6 @@
 package org.za.dali
 
 import org.apache.commons.validator.EmailValidator
-import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
 
 class Contact {
 
@@ -26,9 +25,6 @@ class Contact {
 				return true
 			}
 		})
-	}
-
-	static mapping = {
-		role(type: IdentityEnumType,sqlType: 'varchar(3)')
+		designation(nullable:false, blank:false)
 	}
 }

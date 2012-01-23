@@ -1,8 +1,8 @@
 package org.za.dali.enums
 
 enum TransactionType {
-	DEBIT('DR','Debit'),
-	CREDIT('CR','Credit')
+	DEBIT('DR','Debit'), //Comes in +
+	CREDIT('CR','Credit') //Goes out -
 	
 	String id
 	String name

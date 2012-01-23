@@ -14,13 +14,13 @@ class Client {
 	static belongsTo = [costCentre:CostCentre,parent:Client]
 	
 	String title
-	ClientStatus status
+	ClientStatus status = ClientStatus.ACTIVE
 	ClientType type = ClientType.BILLABLE 
-	String clientCode
+	String code
 	String accountingCode
 	String regNumber
 	String vatNumber
-	//Enum vatCategory
+	String vatCategory
 	Boolean taxable = true
 	Date dateCreated
 	
@@ -34,19 +34,15 @@ class Client {
 
 	static constraints = {
 		costCentre(nullable:false)
-		parent(nullable:true)
-		name(blank: false, nullable: false)
-		clientCode(blank: false, nullable: false)
-		prefix(nullable:false,unique:true,size:1..8)
+		title(blank: false, nullable: false)
+		code(blank: false, nullable: false)
+		status(nullable:false, inList:ClientStatus.values().toList())
+		type(nullable:false, inList:ClientType.values().toList())
 	}
 
 	static mapping = {
-		sort(name: "asc")
-		clients(sort: 'name', order: 'desc')
-		contacts(sort: 'role')
-		//		contacts(sort: 'role, lastName', order: 'desc')
-		status(type: IdentityEnumType,sqlType: "varchar(3)")
-		prefix(sqlType:"varchar(8)",unique:true)
+		sort(title: "asc")
+		status(type: IdentityEnumType,sqlType: "varchar(10)")
 	}
 	
 //	def onChange = { oldMap,newMap ->

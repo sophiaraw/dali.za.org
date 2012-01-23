@@ -116,10 +116,10 @@ grails.plugins.springsecurity.rememberMe.cookieName = 'dali_remember_me'
 grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 	'/logout/**':               ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
 	'/login/**':                ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
-	'/js/**':				 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
-	'/css/**':				 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
-	'/images/**':			 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
-	'/favico.ico':			 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+//	'/js/**':				 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+//	'/css/**':				 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+//	'/images/**':			 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
+//	'/favico.ico':			 ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
 	'/**':         ['IS_AUTHENTICATED_REMEMBERED']
  ]
 

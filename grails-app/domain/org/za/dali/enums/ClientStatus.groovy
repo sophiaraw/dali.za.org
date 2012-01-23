@@ -1,14 +1,16 @@
 package org.za.dali.enums
 
 enum ClientStatus {
-	ACTIVE('A','Active'),
-	INACTIVE('IA','Inactive')
+	ACTIVE('Active'),
+	INACTIVE('Inactive')
 
 	String id
-	String name
 
-	ClientStatus(String id, name){
+	ClientStatus(String id){
 		this.id = id
-		this.name = name
+	}
+	
+	String toString() {
+		id
 	}
 }

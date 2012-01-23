@@ -13,9 +13,14 @@ class ServiceLine {
 	static constraints = {
 		title(nullable:false, blank:false)
 		code(nullable:false, blank:false)
+		active(nullable:false)
 	}
 
 	static mapping = {
 		sort(title: "asc")
+	}
+	
+	String toString() {
+		title
 	}
 }

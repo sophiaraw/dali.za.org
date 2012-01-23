@@ -8,8 +8,9 @@ import org.za.dali.enums.TransactionType
 class BudgetAdjustment {
 
 	static belongsTo = [project:Project]
+	
 	TransactionType type
-	Long value
+	BigDecimal value
     Project relatedProject	
 	String reason
 	User createdBy
