@@ -17,7 +17,7 @@ class User {
 	transient Boolean accountLocked = false
 	transient Boolean passwordExpired = false
 	
-	CostCentre costCentre
+	Company costCentre
 	
 	String username
 	String password

@@ -1,6 +1,6 @@
 
 import org.za.dali.Client
-import org.za.dali.CostCentre
+import org.za.dali.Company
 import org.za.dali.Project
 import org.za.dali.ServiceLine
 import org.za.dali.Team
@@ -32,7 +32,7 @@ class BootStrap {
     }
 	
 	private void createCostCentre() {
-		CostCentre cc = new CostCentre()
+		Company cc = new Company()
 		cc.setName("Quirk Cape Town")
 		cc.setRegisteredName("Quirk Cape Town PTY")
 		cc.setCurrency( Currency.RAND )
@@ -47,7 +47,7 @@ class BootStrap {
 		createClient(cc)
 	}
 	
-	private void createTeam(CostCentre cc) {
+	private void createTeam(Company cc) {
 		Team team = new Team(costCentre:cc)
 		team.title = 'Engineering'
 		
@@ -114,7 +114,7 @@ class BootStrap {
 		team.addToRoles(teamRole)
 	}
 	
-	private void createClient(CostCentre cc) {
+	private void createClient(Company cc) {
 		Client client = new Client(costCentre:cc,
 								   name:'Distell',
 								   status:ClientStatus.ACTIVE,

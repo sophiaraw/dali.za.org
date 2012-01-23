@@ -15,7 +15,7 @@
 		<g:message code="contactDetail.costCentre.label" default="Cost Centre" />
 		
 	</label>
-	<g:select id="costCentre" name="costCentre.id" from="${org.za.dali.CostCentre.list()}" optionKey="id" value="${contactDetailInstance?.costCentre?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="costCentre" name="costCentre.id" from="${org.za.dali.Company.list()}" optionKey="id" value="${contactDetailInstance?.costCentre?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: contactDetailInstance, field: 'client', 'error')} ">

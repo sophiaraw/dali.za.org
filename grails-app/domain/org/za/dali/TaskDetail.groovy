@@ -4,6 +4,11 @@ class TaskDetail {
 
 	static belongsTo = [task:Task, parent:TaskDetail]
 	
+	String title
+	String description
+	Date startDate
+	Date endDate
+	
 	Collection taskDetails
     static hasMany = [taskDetails:TaskDetail]
 	

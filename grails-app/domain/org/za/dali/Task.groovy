@@ -1,12 +1,15 @@
 package org.za.dali
 
+import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
 import org.za.dali.enums.TaskStatus
 import org.za.dali.enums.TaskType
 
 class Task {
 
-	static belongsTo = [project:Project, owner:User]
-
+	static belongsTo = [project:Project]
+	
+	User user
+	
 	TaskType type
 	TaskStatus status
 	ServiceLine serviceLine
@@ -14,24 +17,27 @@ class Task {
 	String description
 	Date startDate
 	Date deliveryDate
-	Integer allocatedTime
+	BigDecimal allocatedTime
 	Boolean reoccuring = false
 	Date reocurringEndDate
+	BigDecimal progress = 0
 		
-    static hasMany = []
+	Date dateCreated
+	User createdBy
+	
+	Collection taskDetails
+    static hasMany = [taskDetails:TaskDetail]
 	
 	static constraints = {
-//		emailAddress(email: true, blank: false)
+		type(nullable:false,inList:TaskType.values().toList())
+		status(nullable:false,inList:TaskStatus.values().toList())
+		serviceLine(nullable:false)
+		title(nullable:false)
+		progress(min:0, max:100)
 	}
 
-	def beforeValidate() {
-//		name = name?.trim()
-	}
-	
 	static mapping = {
-//		sort(name: "asc")
-//		childCollection(sort: 'number', order: 'desc')
-//		enumName(type: IdentityEnumType,sqlType: "varchar(3)")
-
+		type(type: IdentityEnumType,sqlType: "varchar(10)")
+		status(type: IdentityEnumType,sqlType: "varchar(10)")
 	}
 }

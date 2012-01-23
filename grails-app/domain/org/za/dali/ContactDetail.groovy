@@ -5,7 +5,7 @@ import org.za.dali.enums.ContactDetailType
 
 class ContactDetail {
 
-	static belongsTo = [costCentre:CostCentre,client:Client,user:User]
+	static belongsTo = [costCentre:Company,client:Client,user:User]
 	
 	ContactDetailType type
 	String name

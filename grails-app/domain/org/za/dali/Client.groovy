@@ -11,7 +11,7 @@ class Client {
 	static auditable = true
 	transient String auditLogReason
 	
-	static belongsTo = [costCentre:CostCentre,parent:Client]
+	static belongsTo = [costCentre:Company,parent:Client]
 	
 	String title
 	ClientStatus status = ClientStatus.ACTIVE

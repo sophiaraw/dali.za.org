@@ -2,7 +2,7 @@ package org.za.dali
 
 class Team {
 
-	CostCentre costCentre
+	Company costCentre
 	Team parent
 	
 	String title

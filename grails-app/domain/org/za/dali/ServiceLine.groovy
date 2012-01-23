@@ -8,7 +8,7 @@ class ServiceLine {
 	String description
 	String code
 	Boolean active = true
-	
+	Boolean mutable = true
 	
 	static constraints = {
 		title(nullable:false, blank:false)

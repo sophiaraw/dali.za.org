@@ -16,6 +16,7 @@ class Project {
 	transient String auditLogReason
 	static belongsTo = [client:Client, parent:Project]
 	
+	Project quote
 	ProjectType type = ProjectType.QUOTE
 	ProjectStatus status = ProjectStatus.DRAFT
 	
@@ -64,16 +65,15 @@ class Project {
 	  }
 	}
 	
-	def beforeInsert() {
-//		generateJobNumber()
-		if(!createdBy)
-		{
-			println 'TODO "domain/Project add loggedin user as createBy'
+//	def beforeInsert() {
+//		if(!createdBy)
+//		{
 //			createdBy = userService.getLoggedInUser()
-		}
-		
-		jobNumber = 'jobNumber'
-	}
+//		}
+//		
+//		//		generateJobNumber()
+//		jobNumber = "${client.code}.${type.id} 
+//	}
 	
 	static constraints = {
 		client(nullable:false, blank:false)

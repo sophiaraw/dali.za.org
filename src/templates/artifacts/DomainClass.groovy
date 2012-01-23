@@ -1,6 +1,6 @@
+
 import java.util.Date;
 import org.za.dali.User;
-
 
 @artifact.package@class @artifact.name@ {
 
