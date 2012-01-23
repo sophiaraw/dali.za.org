@@ -2,7 +2,8 @@ package org.za.dali.enums
 
 enum TaskType {
 	QUOTING('Q','Quoting'),
-	PROJECT('P','Project')
+	PROJECT('P','Project'),
+	CLIENT_REVIEW('CR','Client review')
 	
 	String id
 	String name

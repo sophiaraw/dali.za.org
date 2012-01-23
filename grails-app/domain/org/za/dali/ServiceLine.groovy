@@ -6,11 +6,13 @@ class ServiceLine {
 	
 	String title
 	String description
+	String code
 	Boolean active = true
 	
 	
 	static constraints = {
 		title(nullable:false, blank:false)
+		code(nullable:false, blank:false)
 	}
 
 	static mapping = {

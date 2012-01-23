@@ -2,7 +2,6 @@ package org.za.dali
 
 import org.apache.commons.validator.EmailValidator
 import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
-import org.za.dali.enums.ContactRole
 
 class Contact {
 
@@ -14,7 +13,7 @@ class Contact {
 	String emailAddress
 	String phoneNumber
 	String mobileNumber
-	ContactRole role
+	String designation
 
 	static constraints = {
 		emailAddress(validator: { val, obj ->

@@ -6,6 +6,8 @@ class Team {
 	
 	String title
 	User leader
+	String colour
+	Integer hoursPerDay
 	
 	Collection teams
 	Collection rateCards

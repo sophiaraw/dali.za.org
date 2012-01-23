@@ -17,6 +17,7 @@ class ProjectController extends BaseController {
 	 * http://dali.za.org/project/list
 	 */
     def list() {
+// 		println session.userRoles
 //		projectSearch.title = 'New website'
 		List<Project> projects = searchService.getProjects(projectSearch)
 		

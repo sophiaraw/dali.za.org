@@ -7,6 +7,7 @@ import org.za.dali.Team
 import org.za.dali.TeamLevel
 import org.za.dali.TeamRole
 import org.za.dali.User
+import org.za.dali.UserRole
 import org.za.dali.enums.AccountingSoftware
 import org.za.dali.enums.ClientStatus
 import org.za.dali.enums.Currency
@@ -74,7 +75,8 @@ class BootStrap {
 							 password:'aa',
 							 status:UserStatus.ACTIVE,
 							 team:team)
-		
+		UserRole.create(userA, Role.QUOTE_EDIT)
+		 
 		userA.save()
 		
 		userB = new User(username:'bb@bb.com',
@@ -124,7 +126,7 @@ class BootStrap {
 								   taxable:true)
 
 		createProjects(client)
-		println client.projects?.size()
+
 		client.save(flush:true,failOnError:true)		
 	}
 	

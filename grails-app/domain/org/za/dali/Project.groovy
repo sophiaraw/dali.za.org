@@ -28,6 +28,7 @@ class Project {
 	Boolean retainer = false
 	Date retainerStartDate
 	Date retainerEndDate
+	Boolean taxable
 	
 	Date requestedDeliveryDate
 	Date actualDeliveryDate

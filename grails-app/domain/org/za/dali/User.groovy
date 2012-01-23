@@ -15,7 +15,7 @@ class User {
 	transient Boolean accountLocked = false
 	transient Boolean passwordExpired = false
 	
-	static belongsTo = [team:Team]
+	CostCentre costCentre
 	
 	String username
 	String password
@@ -35,7 +35,8 @@ class User {
 	Date dob
 	UserStatus status
 	UserType type
-	TeamLevel level
+	//TODO avatar
+	Integer hoursPerDay
 	Date contractStartDate
 	Date contractEndDate
 
@@ -50,6 +51,10 @@ class User {
 	static hasOne = [account:Account]
 	
 	static hasMany = [contactDetails:ContactDetail, contacts:UserContact, rateCards:RateCard, teams:UserTeam, roles:UserRole, logins:Login]
+	
+	def getAuthorities() {
+		return roles
+	}
 	
 	Boolean isEnabled() {
 		return status.is(UserStatus.ACTIVE)
@@ -70,8 +75,10 @@ class User {
 	}
 	
 	static constraints = {
+		costCentre(nullable: false,blank: false)
 		username(email: true, blank: false, unique: true)
 		password(blank: false)
+		// must have at least one team
 	}
 
 	def beforeValidate() {
@@ -85,6 +92,7 @@ class User {
 		martitalStatus(type: IdentityEnumType,sqlType: "varchar(3)")
 		status(type: IdentityEnumType,sqlType: "varchar(3)")
 		type(type: IdentityEnumType,sqlType: "varchar(3)")
+		roles(lazy: false)
 	}
 }
 

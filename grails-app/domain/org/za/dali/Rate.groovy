@@ -15,6 +15,7 @@ class Rate {
 	RateType type = RateType.HOURLY
 	ServiceLine serviceLine
 	TeamLevel level
+	Long value
 	Boolean active = false
 	
 	Date activeDate

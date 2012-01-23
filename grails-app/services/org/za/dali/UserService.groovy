@@ -8,7 +8,7 @@ class UserService {
 
 	static final String SESSION_USER_ID = 'userId'
 	
-    def getLoggedInUser() {
+    User getLoggedInUser() {
 		if(!getSession().SESSION_USER_ID)
 		{
 			return User.get(getSession().SESSION_USER_ID)

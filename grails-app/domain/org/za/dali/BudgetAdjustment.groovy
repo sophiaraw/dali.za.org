@@ -13,6 +13,7 @@ class BudgetAdjustment {
     Project relatedProject	
 	String reason
 	User createdBy
+	User approvedBy
 	Date dateCreated
 	
 	static constraints = {

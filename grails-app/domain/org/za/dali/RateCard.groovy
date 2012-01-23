@@ -10,7 +10,7 @@ class RateCard {
 	User user
 	Team team
 	
-    String name
+    String title
 	String description
 	RateCardStatus status = RateCardStatus.DRAFT
 	

@@ -4,6 +4,7 @@ import java.util.Date
 
 import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
 import org.za.dali.enums.ClientStatus
+import org.za.dali.enums.ClientType
 
 class Client {
 
@@ -12,13 +13,14 @@ class Client {
 	
 	static belongsTo = [costCentre:CostCentre,parent:Client]
 	
-	String name
+	String title
 	ClientStatus status
+	ClientType type = ClientType.BILLABLE 
 	String clientCode
 	String accountingCode
-	String prefix
 	String regNumber
 	String vatNumber
+	//Enum vatCategory
 	Boolean taxable = true
 	Date dateCreated
 	

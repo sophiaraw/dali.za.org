@@ -111,7 +111,7 @@ grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'org.za.dali.U
 grails.plugins.springsecurity.userLookup.authoritiesPropertyName = 'roles'
 grails.plugins.springsecurity.authority.className = 'org.za.dali.enums.Role'
 grails.plugins.springsecurity.authority.nameField = 'role'
-grails.plugins.springsecurity.rememberMe.cookieName = 'grails_remember_me'
+grails.plugins.springsecurity.rememberMe.cookieName = 'dali_remember_me'
 
 grails.plugins.springsecurity.controllerAnnotations.staticRules = [
 	'/logout/**':               ['IS_AUTHENTICATED_ANONYMOUSLY'], // leave the page open
@@ -127,16 +127,25 @@ grails.plugins.springsecurity.useSecurityEventListener = true
 grails.plugins.springsecurity.onInteractiveAuthenticationSuccessEvent = { e, appCtx ->
 	
 	def userId = null
+	def roles = null
 	org.za.dali.Login.withTransaction { status ->
 		def user = org.za.dali.User.read(appCtx.springSecurityService.currentUser.id)
 		userId = user.id
+		roles = user.roles.collect({ it.role }) 
 		def request = RequestContextHolder.getRequestAttributes().getRequest()
 		org.za.dali.Login login = new org.za.dali.Login(ip:request.remoteAddr, user:user)
 		login.save(flush: true)
 	}
-	
-	if(!userId) { RequestContextHolder.currentRequestAttributes().getSession().userId = userId } 
+	println "userId: $userId"
+	println roles
+	if(userId) { 
+		RequestContextHolder.currentRequestAttributes().getSession().userId = userId
+		
+		if(roles) {
+			RequestContextHolder.currentRequestAttributes().getSession().userRoles = roles
+		}
+	} 
 }
 
 // Added by the Authorise plugin:
-grails.plugins.authorise.authoriseService = org.za.dali.AuthoriseServiceService
+grails.plugins.authorise.authoriseService = org.za.dali.AuthoriseService
