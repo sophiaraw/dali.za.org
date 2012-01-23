@@ -6,9 +6,6 @@ class Login {
 
 	static belongsTo = [user:User]
 
-	def beforeInsert = {
-	}
-	
 	String ip
 	Date dateCreated
 }

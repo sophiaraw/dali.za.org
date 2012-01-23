@@ -26,6 +26,8 @@ class Task {
 	Date dateCreated
 	User createdBy
 	
+	QuoteTag quoteTag
+	
 	Collection tasks
     static hasMany = [tasks:Task]
 	
