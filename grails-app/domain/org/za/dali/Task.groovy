@@ -21,12 +21,13 @@ class Task {
 	Boolean reoccuring = false
 	Date reocurringEndDate
 	BigDecimal progress = 0
+	Boolean recordable = true
 		
 	Date dateCreated
 	User createdBy
 	
-	Collection taskDetails
-    static hasMany = [taskDetails:TaskDetail]
+	Collection tasks
+    static hasMany = [tasks:Task]
 	
 	static constraints = {
 		type(nullable:false,inList:TaskType.values().toList())
@@ -41,3 +42,12 @@ class Task {
 		status(type: IdentityEnumType,sqlType: "varchar(10)")
 	}
 }
+
+/*
+ * when closing the task, update progress to 100
+ * When the parent task gets closed, 
+ * 		close all the children
+ *      notify - either Project owner
+ *             - or tasks waiting on this one
+ * 
+ */
