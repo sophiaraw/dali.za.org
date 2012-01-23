@@ -2,13 +2,13 @@ package org.za.dali
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
-import org.za.dali.enums.Role
+import org.za.dali.enums.RoleType
 
 class UserRole {
 	
 	static belongsTo = [user:User]
 	
-	Role role
+	RoleType role
 
 	static constraints = {
 		role(nullable: false)
@@ -35,16 +35,16 @@ class UserRole {
 		builder.toHashCode()
 	}
 
-	static UserRole get(long userId, Role role) {
+	static UserRole get(long userId, RoleType role) {
 		find 'from UserRole where user.id=:userId and role=:role',
 			[userId: userId, role: role]
 	}
 
-	static UserRole create(User user, Role role, boolean flush = false) {
+	static UserRole create(User user, RoleType role, boolean flush = false) {
 		new UserRole(user: user, role: role).save(flush: flush, insert: true)
 	}
 
-	static boolean remove(User user, Role role, boolean flush = false) {
+	static boolean remove(User user, RoleType role, boolean flush = false) {
 		UserRole instance = UserRole.findByUserAndRole(user, role)
 		if (!instance) {
 			return false
@@ -58,7 +58,7 @@ class UserRole {
 		executeUpdate 'DELETE FROM UserRole WHERE user=:user', [user: user]
 	}
 
-	static void removeAll(Role role) {
+	static void removeAll(RoleType role) {
 		executeUpdate 'DELETE FROM UserRole WHERE role=:role', [role: role]
 	}
 

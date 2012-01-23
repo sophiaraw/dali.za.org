@@ -11,7 +11,7 @@ import org.za.dali.UserRole
 import org.za.dali.enums.AccountingSoftware
 import org.za.dali.enums.ClientStatus
 import org.za.dali.enums.Currency
-import org.za.dali.enums.Role
+import org.za.dali.enums.RoleType
 import org.za.dali.enums.UserStatus
 
 class BootStrap {
@@ -20,7 +20,7 @@ class BootStrap {
 	User userC
     def init = { servletContext ->
 
-		createCostCentre()
+		createCompany()
 //		
 //		println cc
 //		
@@ -31,9 +31,9 @@ class BootStrap {
 //		println contact.validate()
     }
 	
-	private void createCostCentre() {
+	private void createCompany() {
 		Company cc = new Company()
-		cc.setName("Quirk Cape Town")
+		cc.setTitle("Quirk Cape Town")
 		cc.setRegisteredName("Quirk Cape Town PTY")
 		cc.setCurrency( Currency.RAND )
 		cc.setAccSoftware(AccountingSoftware.ACCPAC)
@@ -75,7 +75,7 @@ class BootStrap {
 							 password:'aa',
 							 status:UserStatus.ACTIVE,
 							 team:team)
-		UserRole.create(userA, Role.QUOTE_EDIT)
+		UserRole.create(userA, RoleType.QUOTE_EDIT.id)
 		 
 		userA.save()
 		
@@ -110,7 +110,7 @@ class BootStrap {
 	}
 	
 	private void createRoles(Team team) {
-		TeamRole teamRole = new TeamRole(role:Role.TRAFFIC)
+		TeamRole teamRole = new TeamRole(role:RoleType.TRAFFIC_MANAGER)
 		team.addToRoles(teamRole)
 	}
 	

@@ -1,6 +1,8 @@
 package org.za.dali
 
 import java.util.Date;
+
+import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType;
 import org.za.dali.User;
 import org.za.dali.enums.AccountEntryStatus;
 import org.za.dali.enums.TransactionType;

@@ -109,8 +109,8 @@ auditLog {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'org.za.dali.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'org.za.dali.UserRole'
 grails.plugins.springsecurity.userLookup.authoritiesPropertyName = 'roles'
-grails.plugins.springsecurity.authority.className = 'org.za.dali.enums.Role'
-grails.plugins.springsecurity.authority.nameField = 'role'
+grails.plugins.springsecurity.authority.className = 'org.za.dali.Role'
+grails.plugins.springsecurity.authority.nameField = 'authority'
 grails.plugins.springsecurity.rememberMe.cookieName = 'dali_remember_me'
 
 grails.plugins.springsecurity.controllerAnnotations.staticRules = [

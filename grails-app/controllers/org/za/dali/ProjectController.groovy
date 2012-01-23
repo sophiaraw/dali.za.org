@@ -17,6 +17,10 @@ class ProjectController extends BaseController {
 	 * http://dali.za.org/project/list
 	 */
     def list() {
+		String timeStrA = '309:45:00'
+		String timeStrB = '5:15:00'
+		
+		println sumTime( [Time.valueOf(timeStrA), Time.valueOf(timeStrB)])
 // 		println session.userRoles
 //		projectSearch.title = 'New website'
 		List<Project> projects = searchService.getProjects(projectSearch)

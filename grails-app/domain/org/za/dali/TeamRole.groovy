@@ -1,13 +1,13 @@
 package org.za.dali
 
 import org.codehaus.groovy.grails.orm.hibernate.cfg.IdentityEnumType
-import org.za.dali.enums.Role
+import org.za.dali.enums.RoleType
 
 class TeamRole {
 
 	static belongsTo = [team:Team]
 
-	Role role
+	RoleType role
 
 	static constraints = {
 		role(nullable: false)
