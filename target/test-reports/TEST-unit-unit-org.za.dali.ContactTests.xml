@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="cassandra.local" name="org.za.dali.ContactTests" tests="1" time="1.604" timestamp="2012-01-11T11:13:07">
-  <properties />
-  <testcase classname="org.za.dali.ContactTests" name="testValidation" time="1.558" />
-  <system-out><![CDATA[--Output from testValidation--
-]]></system-out>
-  <system-err><![CDATA[--Output from testValidation--
-]]></system-err>
-</testsuite>
