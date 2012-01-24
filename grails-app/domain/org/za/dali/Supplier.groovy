@@ -1,7 +1,7 @@
 package org.za.dali
 
-import java.util.Date;
-import org.za.dali.User;
+import java.util.Date
+import org.za.dali.User
 
 
 class Supplier {

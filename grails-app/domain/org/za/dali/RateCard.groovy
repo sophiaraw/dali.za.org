@@ -12,7 +12,7 @@ class RateCard {
 	
 	Project project
 	Client client
-	User user
+	UserTeam userTeam
 	Team team
 	
     String title

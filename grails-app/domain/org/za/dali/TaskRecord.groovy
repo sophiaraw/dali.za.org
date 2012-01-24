@@ -1,25 +1,19 @@
 package org.za.dali
 
+import java.sql.Time;
+
+import org.za.dali.Task
+
 class TaskRecord {
 
-	static belongsTo = []
+	static belongsTo = [task:Task]
 	
-    static hasMany = []
+	String description
+	Time time
+	
+	Date dateCreated
 	
 	static constraints = {
-//		emailAddress(email: true, blank: false)
+		time(nullable:false, blank:false)
 	}
-
-	def beforeValidate() {
-//		name = name?.trim()
-	}
-	
-	static mapping = {
-//		sort(name: "asc")
-//		childCollection(sort: 'number', order: 'desc')
-//		enumName(type: IdentityEnumType,sqlType: "varchar(3)")
-
-	}
-	
-	static embedded = ['somePOGO']
 }

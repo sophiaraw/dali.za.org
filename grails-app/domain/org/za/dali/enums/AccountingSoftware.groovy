@@ -1,7 +1,7 @@
 package org.za.dali.enums
 
 enum AccountingSoftware {
-	ACCPAC('ACCPAC', ['vatCategoryList'])
+	ACCPAC('ACCPAC')
 	
 	String id
 	

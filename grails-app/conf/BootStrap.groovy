@@ -75,7 +75,7 @@ class BootStrap {
 							 password:'aa',
 							 status:UserStatus.ACTIVE,
 							 team:team)
-		UserRole.create(userA, RoleType.QUOTE_EDIT.id)
+//		UserRole.create(userA, RoleType.QUOTE_EDIT.id)
 		 
 		userA.save()
 		
@@ -116,9 +116,9 @@ class BootStrap {
 	
 	private void createClient(Company cc) {
 		Client client = new Client(costCentre:cc,
-								   name:'Distell',
+								   title:'Distell',
 								   status:ClientStatus.ACTIVE,
-								   clientCode:'DIST01AA',
+								   code:'DIST01AA',
 								   accountingCode:'ACC-DIST01AA',
 								   prefix:'DIST01AA',
 								   regNumber:'reg-number',

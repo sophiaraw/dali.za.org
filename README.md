@@ -1,6 +1,7 @@
 Dali Notes
 ==========
 
+```groovy
 User getTrafficManager() {
 		if(!trafficManager) {
 			trafficManager = contacts.find { it.role.is(ContactRole.TRAFFIC_MANAGER) }
@@ -8,6 +9,7 @@ User getTrafficManager() {
 		
 		return trafficManager
 	}
+```
 	
 SETUP:
 --> each team needs a default service line for New Business, sub service line of Quoting - this line can not be edited	

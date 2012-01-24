@@ -48,14 +48,13 @@ class User {
 	Collection contactDetails
 	Collection userProperties
 	Collection contacts
-	Collection rateCards
 	Collection teams
 	Collection roles
 	Collection logins
 	
 	static hasOne = [account:Account]
 	
-	static hasMany = [contactDetails:ContactDetail, userProperties:UserProperty, contacts:UserContact, rateCards:RateCard, teams:UserTeam, roles:UserRole, logins:Login]
+	static hasMany = [contactDetails:ContactDetail, userProperties:UserProperty, contacts:UserContact, teams:UserTeam, roles:UserRole, logins:Login]
 	
 	def getAuthorities() {
 		return roles

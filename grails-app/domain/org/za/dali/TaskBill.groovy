@@ -2,24 +2,18 @@ package org.za.dali
 
 class TaskBill {
 
-	static belongsTo = []
+	static belongsTo = [task:Task]
 	
-    static hasMany = []
+	Invoice invoice
+	
+	BigDecimal value
+	BigDecimal writtenOffValue
+	
+	User createdBy
+	User approvedBy
+	Date dateCreated
 	
 	static constraints = {
-//		emailAddress(email: true, blank: false)
+		value(nullable:false, blank:false)
 	}
-
-	def beforeValidate() {
-//		name = name?.trim()
-	}
-	
-	static mapping = {
-//		sort(name: "asc")
-//		childCollection(sort: 'number', order: 'desc')
-//		enumName(type: IdentityEnumType,sqlType: "varchar(3)")
-
-	}
-	
-	static embedded = ['somePOGO']
 }

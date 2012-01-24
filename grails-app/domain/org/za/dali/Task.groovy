@@ -36,7 +36,7 @@ class Task {
 		status(nullable:false,inList:TaskStatus.values().toList())
 		serviceLine(nullable:false)
 		title(nullable:false)
-		progress(min:0G, max:100G)
+		progress(min:new BigDecimal(0), max:new BigDecimal(100))
 	}
 
 	static mapping = {
